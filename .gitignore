@@ -1,0 +1,8 @@
+*.pth
+*.pth.tar
+*.nii.gz
+*.npy
+*.h5
+__pycache__/
+*.pyc
+.DS_Store
