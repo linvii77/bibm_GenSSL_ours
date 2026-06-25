@@ -1,8 +1,14 @@
+# Model weights — uploaded via GitHub Release (see REPRODUCE.md)
+checkpoints/
 *.pth
 *.pth.tar
+
+# Large data files
 *.nii.gz
 *.npy
 *.h5
+
+# Python
 __pycache__/
 *.pyc
 .DS_Store

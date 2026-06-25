@@ -1,0 +1,73 @@
+{
+  "seed": 0,
+  "labeled_ratio_percent": 20,
+  "train_cases": [
+    "0002",
+    "0003",
+    "0005",
+    "0006",
+    "0007",
+    "0009",
+    "0021",
+    "0022",
+    "0024",
+    "0025",
+    "0027",
+    "0028",
+    "0031",
+    "0033",
+    "0034",
+    "0035",
+    "0037",
+    "0038",
+    "0039",
+    "0040"
+  ],
+  "val_cases": [
+    "0008",
+    "0010",
+    "0029",
+    "0030"
+  ],
+  "test_cases": [
+    "0001",
+    "0004",
+    "0023",
+    "0026",
+    "0032",
+    "0036"
+  ],
+  "labeled_cases": [
+    "0007",
+    "0009",
+    "0021",
+    "0028"
+  ],
+  "unlabeled_cases": [
+    "0002",
+    "0003",
+    "0005",
+    "0006",
+    "0022",
+    "0024",
+    "0025",
+    "0027",
+    "0031",
+    "0033",
+    "0034",
+    "0035",
+    "0037",
+    "0038",
+    "0039",
+    "0040"
+  ],
+  "train_slices": 4478,
+  "labeled_slices": 866,
+  "labeled_slice_fraction": 0.1934,
+  "notes": [
+    "Volume split follows DHC process_split_fully(train_ratio=0.8) with 5/6 train and 1/6 eval.",
+    "Labeled split follows DHC process_split_semi on train volumes using the same RNG stream.",
+    "Upstream DHC does not fix a seed; seed=0 here is an explicit reproducibility choice.",
+    "Use val.txt during training and test.txt only for final evaluation."
+  ]
+}
