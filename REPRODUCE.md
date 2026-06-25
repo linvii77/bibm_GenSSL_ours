@@ -157,3 +157,39 @@ Located at `data/amos_splits/` and `data/synapse_splits/`:
 | AMOS 5% | ~200s | ~6.6h |
 
 Set `--time=12:00:00` in SLURM for all AMOS test jobs.
+
+---
+
+## 8. Pre-trained Model Checkpoints
+
+All 6 checkpoints are available in the [GitHub Release v1.0-checkpoints](https://github.com/linvii77/bibm_GenSSL_ours/releases/tag/v1.0-checkpoints).
+
+### Download
+
+```bash
+BASE="https://github.com/linvii77/bibm_GenSSL_ours/releases/download/v1.0-checkpoints"
+
+# Synapse 20%
+wget $BASE/synapse_20p_seed0_best_model.pth
+wget $BASE/synapse_20p_seed1_best_model.pth
+wget $BASE/synapse_20p_seed666_best_model.pth
+
+# AMOS 5%
+wget $BASE/amos_5p_seed0_best_model.pth
+wget $BASE/amos_5p_seed1_best_model.pth
+wget $BASE/amos_5p_seed666_best_model.pth
+```
+
+### Load for Inference
+
+```python
+import torch
+from DiffVNet.diff_vnet import DiffVNet
+
+net = DiffVNet(n_channels=1, n_classes=16, n_filters=32)  # AMOS: n_classes=16; Synapse: n_classes=14
+ckpt = torch.load("amos_5p_seed0_best_model.pth", map_location="cpu")
+net.load_state_dict(ckpt)
+net.eval()
+```
+
+Then run `test.py` and `evaluate_metrics.py` as described in sections 2 and 4 above.
