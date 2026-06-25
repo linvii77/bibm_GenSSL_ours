@@ -3,11 +3,47 @@
 ## Environment
 
 ```bash
-conda activate dhc   # Python 3.x, PyTorch, SimpleITK, tqdm, nibabel
+pip install -r requirements.txt
+# Core: torch==1.12.1, SimpleITK==2.2.0, MedPy==0.4.0, nibabel, tqdm, tensorboard
 ```
 
 Code root: `~/Desktop/A&D复现/code/`  
 HPC code root: `/gpfs/work/aac/zimuzhang2302/AD_project/code/`
+
+---
+
+## 0. Data Preprocessing
+
+### Synapse 20%
+
+1. Download **Synapse Multi-organ** dataset (18 CT scans with 13-organ labels) from the official source.
+2. Place raw data at `./Datasets/Synapse/` with structure:
+   ```
+   Datasets/Synapse/imagesTr/img0001.nii.gz ...
+   Datasets/Synapse/labelsTr/label0001.nii.gz ...
+   ```
+3. Run preprocessing:
+   ```bash
+   python code/data/preprocess_synapse.py
+   # Outputs: ./Synapse_data/npy/{case_id}_image.npy, {case_id}_label.npy
+   ```
+
+### AMOS 5%
+
+1. Download **AMOS22** CT dataset (cases 0001–0500) from https://amos22.grand-challenge.org/
+2. Place raw data at `./Datasets/amos22/` with structure:
+   ```
+   Datasets/amos22/imagesTr/amos_0001.nii.gz ...
+   Datasets/amos22/labelsTr/amos_0001.nii.gz ...
+   ```
+   > Only CT scans (amos_0001~0500) are used; MRI cases (0501+) are skipped automatically.
+3. Run preprocessing:
+   ```bash
+   python code/data/preprocess_amos.py
+   # Outputs: ./AMOS_data/npy/amos_XXXX_image.npy, amos_XXXX_label.npy
+   ```
+
+The data splits (which case IDs go to train/eval/test/labeled/unlabeled) are fixed in `data/amos_splits/` and `data/synapse_splits/` — **do not regenerate them** or results will differ.
 
 ---
 
